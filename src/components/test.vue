@@ -8,13 +8,14 @@ const count = ref(0);
 
 <template>
   <h1>{{ msg }}</h1>
-  <h2>{{ "我是毫秒级更新" }}</h2>
-  <h2>{{ test }}</h2>
+  <h2>{{import.meta.env.VITE_BASE_API}}</h2>
+
   <p>
     Recommended IDE setup:
     <a href="https://code.visualstudio.com/" target="_blank">VSCode</a>
     +
     <a href="https://github.com/johnsoncodehk/volar" target="_blank">Volar</a>
+    
   </p>
 
   <p>See <code>README.md</code> for more information.</p>
