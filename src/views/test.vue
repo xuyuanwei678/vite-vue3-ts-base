@@ -1,3 +1,9 @@
+<!--
+ * @Author: BlackJoken
+ * @Date: 2022-01-11 10:02:56
+ * @LastEditors: BlackJoken
+ * @LastEditTime: 2022-01-12 10:18:02
+-->
 <template>
   <div class="readers">{{ readersNumber }} 我是global.less中的颜色
     <div class="readers-book">
@@ -12,6 +18,7 @@
     <div class="class_global class_min2">
         VITE_BASE_PATH=>>{{url}}
     </div>
+    <el-button>Default</el-button>
   </div>
 </template>
 
@@ -63,9 +70,9 @@
         }
     }
     .class_min{
-        font: 2rem sans-serif;
+        font: .24rem sans-serif;
     }
     .class_min2{
-        font: 200px sans-serif;
+        font: 24px sans-serif;
     }
 </style>

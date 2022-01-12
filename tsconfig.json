@@ -15,9 +15,7 @@
     "baseUrl": ".",
     "rootDir": ".",
     "types": [
-      "webpack-env",
-      "chai",
-      "mocha"
+      "element-plus/global"
     ],
     "paths": {
       "@/*": [
