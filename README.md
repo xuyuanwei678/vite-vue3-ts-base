@@ -28,3 +28,19 @@ https://blog.csdn.net/qq_43869822/article/details/121637066
 
 https://blog.csdn.net/sirodeng/article/details/105431664
 
+## 关于项目搭建
+
+1."dayjs": "^1.10.7", 时间格式化工具。 https://dayjs.gitee.io/docs/zh-CN/installation/installation
+2."screenfull": "4.0.0",   全屏工具   https://github.com/sindresorhus/screenfull
+"autoprefixer": "^10.4.2",
+"axios": "^0.24.0",
+"element-plus": "^1.3.0-beta.4",
+"eslint": "7.32.0",
+"eslint-plugin-vue": "8.0.0",
+"less": "^4.1.2",
+"moment": "^2.29.1",
+"postcss-pxtorem": "^6.0.0",
+
+"vue": "^3.2.25",
+"vue-router": "^4.0.12",
+"vuex": "^4.0.2"

@@ -57,6 +57,7 @@ const getErrorCode2text = (response: AxiosResponse): string => {
  * @example
  * service.get<{data: string; code: number}>('/test').then(({data}) => { console.log(data.code) })
  */
+
 const service = Axios.create({
   baseURL: import.meta.env.VITE_BASE_API,
   timeout: 10000,
@@ -72,7 +73,7 @@ const service = Axios.create({
  */
 service.interceptors.request.use(async (config: AxiosRequestConfig) => {
   // 如果是获取token接口：
-  console.log('进入请求')
+  console.log('进入请求',import.meta.env.VITE_BASE_API)
   config.headers.token = 'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImYyYWQ1MmQ4LTc3ZTItNGJiOS1hMjRjLTM5MjRlM2IxYWYyNiJ9.KKKCtDxsgD49pmYtXuBVyCM8PiCKHWCcz_5qmGp2yrLet9brcerVRbSiTUYjCZFErW69n273zyxHha3bNyBPrQ'
   if (config.url === '/auth/oauth/token') {
     let userAccount = ''
