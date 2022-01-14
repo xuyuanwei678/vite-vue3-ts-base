@@ -2,7 +2,7 @@
  * @Author: BlackJoken
  * @Date: 2022-01-11 10:02:56
  * @LastEditors: BlackJoken
- * @LastEditTime: 2022-01-12 15:15:17
+ * @LastEditTime: 2022-01-14 09:36:52
 -->
 <template>
   <div class="readers">{{ readersNumber }} 我是global.less中的颜色
@@ -62,7 +62,6 @@
       const moment_date =()=>{
         setInterval(() => {
           nowTime.value = proxy.$dayjs().format('YYYY年MM月DD日 a HH:mm:ss')
-          console.log(nowTime)
         }, 1000);
       } 
       
@@ -137,7 +136,6 @@
             width: 25%;
             height: 25%;
             background: #fff;
-            
           }
         }
     }

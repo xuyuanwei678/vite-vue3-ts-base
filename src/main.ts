@@ -11,6 +11,7 @@ import store from './store'
 import 'amfe-flexible/index.js'
 import '@/common/rem.js'
 
+
 import dayjs from 'dayjs'
 import isLeapYear from 'dayjs/plugin/isLeapYear' // 导入插件
 import relativeTime from'dayjs/plugin/relativeTime'
@@ -32,5 +33,7 @@ app.config.globalProperties.$dayjs = dayjs
 app.use(ElementPlus, {
     locale: zhCn,
 })
+
+
 
 app.use(router).use(store).mount('#app')

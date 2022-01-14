@@ -1983,6 +1983,20 @@ vscode-vue-languageservice@0.29.8:
     vscode-pug-languageservice "0.29.8"
     vscode-typescript-languageservice "0.29.8"
 
+vue-aliplayer-v3@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/vue-aliplayer-v3/-/vue-aliplayer-v3-1.0.3.tgz#347f1a7611266067eb57b6a8df57ecb9d7a6bb9c"
+  integrity sha512-265Ms4LSQGohHQtnmbvcVGTUK04Ab5rwn6o7lGvM/RNGOdLfDzkdp7L0r+ZRuMHSdf05nJARsTnVw4VoiMFVEA==
+  dependencies:
+    vue "^3.1.1"
+
+vue-aliplayer@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/vue-aliplayer/-/vue-aliplayer-1.0.0.tgz#1c3f512b80809827f70c6b63ad0b782856074b6b"
+  integrity sha512-z29s38hlNJDckGSPtuTsYwMdjj70SsvJ5VzbEoBoV2BTrg3ucvodM2CW7BWstrG9WaQqz4F8nVGLSON05RrmJw==
+  dependencies:
+    vue-github-badge "^1.0.0"
+
 vue-demi@*:
   version "0.12.1"
   resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.12.1.tgz#f7e18efbecffd11ab069d1472d7a06e319b4174c"
@@ -2001,6 +2015,11 @@ vue-eslint-parser@^8.0.0:
     lodash "^4.17.21"
     semver "^7.3.5"
 
+vue-github-badge@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/vue-github-badge/-/vue-github-badge-1.0.1.tgz#dff7ce07320e64a218edf106b15a43176ec06106"
+  integrity sha1-3/fOBzIOZKIY7fEGsVpDF27AYQY=
+
 vue-router@^4.0.12:
   version "4.0.12"
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-4.0.12.tgz#8dc792cddf5bb1abcc3908f9064136de7e13c460"
@@ -2016,7 +2035,7 @@ vue-tsc@^0.29.8:
     "@volar/shared" "0.29.8"
     vscode-vue-languageservice "0.29.8"
 
-vue@^3.2.25:
+vue@^3.1.1, vue@^3.2.25:
   version "3.2.26"
   resolved "https://registry.yarnpkg.com/vue/-/vue-3.2.26.tgz#5db575583ecae495c7caa5c12fd590dffcbb763e"
   integrity sha512-KD4lULmskL5cCsEkfhERVRIOEDrfEL9CwAsLYpzptOGjaGFNWo3BQ9g8MAb7RaIO71rmVOziZ/uEN/rHwcUIhg==

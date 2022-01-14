@@ -6,7 +6,7 @@
  */
 import { createRouter, createWebHashHistory } from 'vue-router'
 import test from '@/views/test.vue'
-import zhcn from '@/views/zhcn.vue'
+import owt from '@/views/owtAli.vue'
 
 const Router = createRouter({
   history: createWebHashHistory(),
@@ -15,9 +15,9 @@ const Router = createRouter({
     name: 'test',
     component: test
   },{
-    path: '/zhcn',
-    name: 'zhcn',
-    component: zhcn
+    path: '/owt',
+    name: 'owt',
+    component: owt
   }
 ]
 })
