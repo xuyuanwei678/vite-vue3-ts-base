@@ -19,7 +19,8 @@ import 'dayjs/locale/zh-cn' // 导入本地化语言
 dayjs.extend(relativeTime)
 dayjs.extend(isLeapYear) // 使用插件
 dayjs.locale('zh-cn') // 使用本地化语言
-console.log(dayjs().from(dayjs('1990-01-01')))
+
+import Ics from '@/../public/owt/index.js' 
 
 
 
@@ -29,6 +30,7 @@ import zhCn from 'element-plus/es/locale/lang/zh-cn'
 
 const app = createApp(App)
 app.config.globalProperties.$dayjs = dayjs
+app.config.globalProperties.$Ics = Ics
 
 app.use(ElementPlus, {
     locale: zhCn,

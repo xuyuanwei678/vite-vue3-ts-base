@@ -17,7 +17,6 @@
     "types": [
       "element-plus/global",
       "vite/client",
-      "moment"
     ],
     "paths": {
       "@/*": [
