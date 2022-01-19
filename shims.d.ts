@@ -9,3 +9,4 @@ declare module '*.js' {
     const componentOptions: ComponentOptions
     export default componentOptions
 }
+

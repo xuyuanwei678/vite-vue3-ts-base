@@ -8,6 +8,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import test from '@/views/test.vue'
 import owt from '@/views/owtAli.vue'
 import webrtc from '@/views/webrtc.vue'
+import srsdemo from '@/views/srsdemo.vue'
 
 const Router = createRouter({
   history: createWebHashHistory(),
@@ -23,6 +24,10 @@ const Router = createRouter({
     path: '/webrtc',
     name: 'webrtc',
     component: webrtc
+  },{
+    path: '/srsdemo',
+    name: 'srsdemo',
+    component: srsdemo
   },{
     path: '/',
     redirect: '/test'

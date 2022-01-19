@@ -2,7 +2,7 @@
  * @Author: BlackJoken
  * @Date: 2022-01-10 14:45:33
  * @LastEditors: BlackJoken
- * @LastEditTime: 2022-01-12 15:17:30
+ * @LastEditTime: 2022-01-18 13:07:25
  */
 import { createApp } from 'vue'
 import App from './App.vue'
@@ -20,22 +20,27 @@ dayjs.extend(relativeTime)
 dayjs.extend(isLeapYear) // 使用插件
 dayjs.locale('zh-cn') // 使用本地化语言
 
-import Ics from '@/../public/owt/index.js' 
+//import Ics from '@/../public/owt/index.js' 
 
-
+//iconfont
+import '@/assets/iconfont/iconfont.css'
 
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 
+import CKEditor from '@ckeditor/ckeditor5-vue'
+import VueUeditorWrap from 'vue-ueditor-wrap' 
+
 const app = createApp(App)
 app.config.globalProperties.$dayjs = dayjs
-app.config.globalProperties.$Ics = Ics
+// app.config.globalProperties.$Ics = Ics
 
 app.use(ElementPlus, {
     locale: zhCn,
 })
 
-
+app.use(CKEditor)
+app.use(VueUeditorWrap)
 
 app.use(router).use(store).mount('#app')

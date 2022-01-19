@@ -2,7 +2,7 @@
  * @Author: BlackJoken
  * @Date: 2022-01-11 10:02:56
  * @LastEditors: BlackJoken
- * @LastEditTime: 2022-01-14 09:36:52
+ * @LastEditTime: 2022-01-19 09:57:55
 -->
 <template>
   <div class="readers">{{ readersNumber }} 我是global.less中的颜色
@@ -26,22 +26,33 @@
       <div ref='font' class="test-element">
         我是字体大小
       </div>
+      
     </div>
-    
+    <div class="iconfont icon-sousuoxiao"></div>
+    <editor></editor>
+
   </div>
 </template>
 
 <script>
-  import { ref, reactive,onMounted,getCurrentInstance } from 'vue'
+/**
+ * ref:创建基本类型响应式变量，值发生改变可改变dom（xxx.value）
+ * reactive：创建复杂类型（对象，数组）响应式变量，值发生改变可改变dom(直接使用)
+ */
+  import { ref, reactive,onMounted,getCurrentInstance,defineComponent,defineAsyncComponent } from 'vue'
   import {
   getTestList
 } from '@/http/api/test'
   import screenfull from 'screenfull'
+  import editor from './editor/editor.vue'
   export default {
+    components:{
+      editor
+    },
     setup() {
       const {proxy } = getCurrentInstance();
       const font = ref(null);
-      
+
       onMounted(() => {
         console.log("onMounted===",proxy.$dayjs());
         console.log('字体',font.value)
@@ -52,12 +63,26 @@
       const book = reactive({ title: 'Vue 3 Guide' })
       const url = ref(import.meta.env.VITE_BASE_API)
 
-
       const page = ref(1)
       const total = ref(0)
       const pageSize = ref(10)
       const tableData = ref([])
       const searchInfo = ref({})
+
+     
+      
+      // 加载了适配器
+      let msg = ref('')
+
+      let editorData = ref('')
+      const editorConfig = reactive({
+        language: 'zh-cn',            //使用中文包
+        removePlugins: ['MediaEmbed'], // 除去视频按钮
+        ImageUploadUrl: '/api'
+      })
+
+      
+      const plugins = ref([]);
       let nowTime = ref('YYYY年MM月DD日 a HH:mm:ss')
       const moment_date =()=>{
         setInterval(() => {
@@ -73,13 +98,6 @@
         /**
          * based on screenfull@6.0.0
          */
-        // if (screenfull.isEnabled) {
-        //   screenfull.request();
-        // }else{
-        //   screenfull.request();
-        //   console.log('http://localhost:3000/#/test')
-        // }
-
         //来回切换
         screenfull.toggle();
       }
