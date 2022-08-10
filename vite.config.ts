@@ -1,11 +1,18 @@
+/*
+ * @Author: BlackJoken
+ * @Date: 2022-03-17 09:12:55
+ * @LastEditors: BlackJoken
+ * @LastEditTime: 2022-03-30 16:55:31
+ */
 
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import * as path from 'path'
 // https://vitejs.dev/config/
+
 export default defineConfig({
   plugins: [
-    vue()
+    vue(),
   ],
   resolve: {
     alias: {
@@ -25,10 +32,10 @@ export default defineConfig({
   //开发服务器选项
   server: {
     proxy: {
-      '/apo': {
-        target: 'http://192.168.0.9:9001',
+      '/api': {
+        target: 'http://192.168.100.30:9999',
         changeOrigin: true,
-        rewrite: path => path.replace(/^\/apo/, '')
+        rewrite: path => path.replace(/^\/api/, '')
       }
     }
   },

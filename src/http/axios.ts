@@ -1,7 +1,9 @@
 
 import Axios, { AxiosResponse, AxiosRequestConfig, AxiosError } from 'axios'
 import router from '@/router'
-
+import { delCookie } from "@/common/utils/cookie";
+import { ElMessage } from 'element-plus'
+import store from '@/store';
 /**
  * get status code
  * @param {AxiosResponse} response Axios  response object
@@ -9,6 +11,7 @@ import router from '@/router'
 const getErrorCode2text = (response: AxiosResponse): string => {
   /** http status code */
   const code = response.status
+  console.log('response.status', response.status)
   /** notice text */
   let message = 'Request Error'
   switch (code) {
@@ -58,12 +61,15 @@ const getErrorCode2text = (response: AxiosResponse): string => {
  * service.get<{data: string; code: number}>('/test').then(({data}) => { console.log(data.code) })
  */
 
+
+
+
 const service = Axios.create({
   baseURL: import.meta.env.VITE_BASE_API,
-  timeout: 10000,
+  timeout: 60*1000,
   headers: {
     'User-Type': 'bus',
-    
+    'Content-Type': 'application/json',
   }
 })
 
@@ -73,8 +79,7 @@ const service = Axios.create({
  */
 service.interceptors.request.use(async (config: AxiosRequestConfig) => {
   // 如果是获取token接口：
-  console.log('进入请求',import.meta.env.VITE_BASE_API)
-  config.headers.token = 'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImYyYWQ1MmQ4LTc3ZTItNGJiOS1hMjRjLTM5MjRlM2IxYWYyNiJ9.KKKCtDxsgD49pmYtXuBVyCM8PiCKHWCcz_5qmGp2yrLet9brcerVRbSiTUYjCZFErW69n273zyxHha3bNyBPrQ'
+  config.headers.token = sessionStorage.getItem('token')
   if (config.url === '/auth/oauth/token') {
     let userAccount = ''
     // 若存在username，则为登录情况，判断user-account
@@ -83,7 +88,7 @@ service.interceptors.request.use(async (config: AxiosRequestConfig) => {
         ? 'ACCOUNT_USER'
         : 'ADMIN_USER'
     } else {
-      
+
     }
   } else {
     // 如果保存有token，则取，否则不添加Authorization
@@ -99,41 +104,51 @@ service.interceptors.request.use(async (config: AxiosRequestConfig) => {
  * @returns {}
  */
 service.interceptors.response.use(
-  /** 请求有响应 */
-  async (response: AxiosResponse) => {
-    if (response.status === 200) {
-      return Promise.resolve(response)
-    } else {
-      const __text = getErrorCode2text(response)
-      return Promise.reject(new Error(__text))
-    }
-  },
-  /** 请求无响应 */
-  (error: AxiosError) => {
-    let __emsg: string = error.message || ''
 
-    if (error.message) {
-      __emsg = error.message
+res => {
+  
+  if(res.data.code!='200'){
+    
+    if(res.data.code == '5001'){
+      ElMessage({
+        message: '登录过期',
+        grouping: true,
+        type: 'error',
+      })
+      delCookie('JSESSIONID')
+      store.commit('changeLoginTag','过期了')
+      localStorage.clear();
+      router.push("/login");
+      return Promise.resolve(res.data)
+    }else{
+      ElMessage.error(res.data.msg || '请求错误')
+      return Promise.resolve(res.data)
     }
-
-    if (error.response) {
-      __emsg = error.response.data.message
-        ? error.response.data.message
-        : error.response.data.data
-    }
-    // timeout
-    if (__emsg.indexOf('timeout') >= 0) {
-      __emsg = 'timeout'
-    }
-
-    if (error?.response?.status === 401) {
-      if (router.currentRoute.value.path !== '/entry/login') {
-        
-        router.push('/entry/login')
+    
+  }else{
+    return Promise.resolve(res.data) 
+  }
+  
+},
+  error => {
+    console.log('err', error.response)
+    if(error.response){
+      if (error.response.data) {
+        let data = error.response.data
+        console.log('data',data)
+        ElMessage.error(data.msg||data.message)
+        if (data.code == '5001') {
+          console.log('cookie 过期')
+        } else if(data.code == '40006'){
+          console.log(data.code,'40000000000')
+          return Promise.reject(error.response.data)
+        }
+      }else{
+        getErrorCode2text(error.response)
       }
-      return Promise.reject(new Error('401'))
     }
-    return Promise.reject(new Error(__emsg))
+    
+    return 0;
   }
 )
 

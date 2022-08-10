@@ -4,6 +4,7 @@
  * @LastEditors: BlackJoken
  * @LastEditTime: 2022-01-18 13:07:25
  */
+
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
@@ -20,7 +21,14 @@ dayjs.extend(relativeTime)
 dayjs.extend(isLeapYear) // 使用插件
 dayjs.locale('zh-cn') // 使用本地化语言
 
-//import Ics from '@/../public/owt/index.js' 
+import initStorePersistence from './store/relaunch'
+import installMaxerStore, { Maxer } from './store/maxer.mixin'
+// 声明全局组件 防止需要this调用时不能识别类型
+declare module '@vue/runtime-core' {
+    interface ComponentCustomProperties {
+        $m: Maxer;  // 声明全局方法
+    }
+}
 
 //iconfont
 import '@/assets/iconfont/iconfont.css'
@@ -42,5 +50,6 @@ app.use(ElementPlus, {
 
 app.use(CKEditor)
 app.use(VueUeditorWrap)
-
+installMaxerStore(app) // 全局混入vuex
+initStorePersistence(store) // 初始化持久化vuex
 app.use(router).use(store).mount('#app')

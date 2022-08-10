@@ -6,11 +6,8 @@
  */
 import { createRouter, createWebHashHistory } from 'vue-router'
 import test from '@/views/test.vue'
-import owt from '@/views/owtAli.vue'
-import webrtc from '@/views/webrtc.vue'
-import srsdemo from '@/views/srsdemo.vue'
 
-
+// import {routerFilter} from '@/common/utils/routerFilter'
 
 /** 自动加载其他路由模块 */
 const registerRoute = () => {
@@ -26,26 +23,15 @@ const Router = createRouter({
   routes: [
     ...registerRoute(),
     {
+      path: '/',
+      redirect: '/test'
+    },
+    {
     path: '/test',
     name: 'test',
     component: test
-  },{
-    path: '/owt',
-    name: 'owt',
-    component: owt
-  },{
-    path: '/webrtc',
-    name: 'webrtc',
-    component: webrtc
-  },{
-    path: '/srsdemo',
-    name: 'srsdemo',
-    component: srsdemo
-  },{
-    path: '/',
-    redirect: '/test'
   }
 ]
 })
-
+// routerFilter(Router)
 export default Router

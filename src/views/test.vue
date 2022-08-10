@@ -34,15 +34,13 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 /**
  * ref:创建基本类型响应式变量，值发生改变可改变dom（xxx.value）
  * reactive：创建复杂类型（对象，数组）响应式变量，值发生改变可改变dom(直接使用)
  */
   import { ref, reactive,onMounted,getCurrentInstance,defineComponent,defineAsyncComponent } from 'vue'
-  import {
-  getTestList
-} from '@/http/api/test'
+  
   import screenfull from 'screenfull'
   import editor from './editor/editor.vue'
   export default {
@@ -91,7 +89,7 @@
       } 
       
       const getTableData = async() => {
-        const table = await getTestList({ currentPage: page.value, pageSize: pageSize.value, ...searchInfo.value })
+        
         
     }
       const fullScreen = ()=>{
